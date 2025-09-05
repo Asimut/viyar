@@ -81,7 +81,9 @@
                         <label for="branch" class="block font-bold text-gray-700">Філія*</label>
                         <select id="branch" name="branch" class="border w-full p-2 rounded">
                             <option value="">Обери філію зі списку</option>
+                            <option value="Біла Церква">Біла Церква</option>
                             <option value="Варшава">Варшава</option>
+                            <option value="Васильків">Васильків</option>
                             <option value="Віскозна">Віскозна</option>
                             <option value="Вінниця">Вінниця</option>
                             <option value="Гавела">Гавела</option>
@@ -100,6 +102,7 @@
                             <option value="Хмельницький">Хмельницький</option>
                             <option value="Черкаси">Черкаси</option>
                             <option value="Чернівці">Чернівці</option>
+                            
                         </select>
                     </div>
                     <div class="submit-button-wrapper">
@@ -111,15 +114,12 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            console.log("DOMContentLoaded event fired");
-
             const form = document.getElementById('form');
             const inputs = form.querySelectorAll('input, select');
             const submitButton = form.querySelector('button[type="submit"]');
 
             inputs.forEach(input => {
                 input.addEventListener('input', function() {
-                    console.log(`Input event on ${input.id}`);
                     validateInput(input);
                     toggleSubmitButton();
                 });
@@ -127,15 +127,15 @@
 
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
-                console.log("Form submitted");
+                inputs.forEach(input => {
+                    validateInput(input);
+                });
 
                 const formData = new FormData(form);
                 const data = {};
                 formData.forEach((value, key) => {
                     data[key] = value;
                 });
-
-                console.log("Sending data to Google Script:", data);
 
                 fetch("https://script.google.com/macros/s/AKfycbwU5uC0hTyNVhNCmr8EJyUxyfjhThc9BwkhjUnl1J5A1LaJXjwRkzjqObm7vGDnfj_c/exec", {
                     method: "POST",
@@ -144,21 +144,18 @@
                     },
                     body: new URLSearchParams(data).toString(),
                 })
+                .then((response) => response.json())
                 .then((data) => {
-                    console.log("Response from Google Script:", data);
                     if (data.result === "success") {
-                        console.log("Data sent successfully, redirecting to story.html...");
-                        // window.location.href = "story.html"; // Переход к курсу
+                        alert("Дані успішно відправлені");
+                        window.location.href = "story.html"; // Переход к курсу
                     } else {
-                        console.error("Error from Google Script:", data.error);
                         alert("Помилка відправки даних: " + data.error);
                     }
+                })
+                .catch((error) => {
+                    console.error("Помилка:", error);
                 });
-
-                setTimeout(() => {
-                    window.location.href = "story.html"; // Переход к курсу
-                }, 1000);
-
             });
 
             function validateInput(input) {
@@ -189,12 +186,10 @@
                         input.classList.add('input-invalid');
                     }
                 }
-                toggleSubmitButton();
             }
 
             function toggleSubmitButton() {
                 const allValid = [...inputs].every(input => input.classList.contains('input-valid'));
-                console.log(`All inputs valid: ${allValid}`);
                 if (allValid) {
                     submitButton.classList.add('active');
                     submitButton.disabled = false;
@@ -203,8 +198,6 @@
                     submitButton.disabled = true;
                 }
             }
-
-            console.log("Form setup complete");
         });
     </script>
 </body>
