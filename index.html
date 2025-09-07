@@ -1,204 +1,192 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Форма вводу</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .input-valid {
-            border-color: #0080E0;
-        }
-        .input-invalid {
-            border-color: #000000;
-        }
-        .logo {
-            width: 80%;
-        }
-        .input-wrapper {
-            position: relative;
-        }
-        .input-wrapper span {
-            position: absolute;
-            top: 50%;
-            left: 10px;
-            font-weight: bold;
-            color: black;
-        }
-        .phone-input {
-            padding-left: 50px;
-        }
-        .submit-button {
-            background-color: #9D9D9D;
-            color: white;
-        }
-        .submit-button.active {
-            background-color: #0080E0;
-        }
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 80%;
-        }
-        .form-element {
-            margin-bottom: 16px;
-        }
-        .submit-button-wrapper {
-            margin-top: 60px;
-        }
-        .form-wrapper {
-            border: 2px solid #0080E0;
-            border-radius: 8px;
-            padding: 20px;
-            background-color: #f5f5f5;
-            height: 600px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Форма вводу</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .input-valid{ border-color:#0080E0; }
+    .input-invalid{ border-color:#000000; }
+    .logo{ width:80%; }
+    .input-wrapper{ position:relative; }
+    .input-wrapper span{
+      position:absolute; top:50%; left:10px; transform:translateY(-50%);
+      font-weight:bold; color:black;
+    }
+    .phone-input{ padding-left:50px; }
+    .submit-button{ background-color:#9D9D9D; color:white; }
+    .submit-button.active{ background-color:#0080E0; }
+    .form-container{ display:flex; flex-direction:column; justify-content:center; height:80%; }
+    .form-element{ margin-bottom:16px; }
+    .submit-button-wrapper{ margin-top:60px; }
+    .form-wrapper{ border:2px solid #0080E0; border-radius:8px; padding:20px; background:#f5f5f5; height:600px; }
+  </style>
 </head>
 <body class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="bg-white p-8 rounded shadow-md" style="width: 430px; height: 932px; padding-top: 35px;">
-        <div class="flex justify-center mb-4">
-            <img src="https://i.ibb.co/8YqPWnJ/Logo.png" alt="Viyar Logo" class="logo">
-        </div>
-        <div class="form-container">
-            <div class="form-wrapper">
-                <form id="form">
-                    <div class="relative mb-4 form-element">
-                        <label for="firstName" class="block font-bold text-gray-700">Ім'я*</label>
-                        <input type="text" id="firstName" name="firstName" class="border w-full p-2 rounded">
-                    </div>
-                    <div class="relative mb-4 form-element">
-                        <label for="lastName" class="block font-bold text-gray-700">Прізвище*</label>
-                        <input type="text" id="lastName" name="lastName" class="border w-full p-2 rounded">
-                    </div>
-                    <div class="relative mb-4 form-element input-wrapper">
-                        <label for="phone" class="block font-bold text-gray-700">Номер телефону*</label>
-                        <span>+38</span>
-                        <input type="tel" id="phone" name="phone" class="border w-full p-2 rounded phone-input" placeholder="000 000 00 00" pattern="\d{3} \d{3} \d{2} \d{2}" maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\d{3})(\d{3})(\d{2})(\d{2})/, '$1 $2 $3 $4');">
-                    </div>
-                    <div class="relative mb-4 form-element">
-                        <label for="branch" class="block font-bold text-gray-700">Філія*</label>
-                        <select id="branch" name="branch" class="border w-full p-2 rounded">
-                            <option value="">Обери філію зі списку</option>
-                            <option value="Біла Церква">Біла Церква</option>
-                            <option value="Варшава">Варшава</option>
-                            <option value="Васильків">Васильків</option>
-                            <option value="Віскозна">Віскозна</option>
-                            <option value="Вінниця">Вінниця</option>
-                            <option value="Гавела">Гавела</option>
-                            <option value="Дніпро">Дніпро</option>
-                            <option value="Житомир">Житомир</option>
-                            <option value="Івано-Франківськ">Івано-Франківськ</option>
-                            <option value="Кривий Ріг">Кривий Ріг</option>
-                            <option value="Львів">Львів</option>
-                            <option value="Львів 2">Львів 2</option>
-                            <option value="Новоконстантинівська">Новоконстантинівська</option>
-                            <option value="Одеса">Одеса</option>
-                            <option value="Полтава">Полтава</option>
-                            <option value="Рівне">Рівне</option>
-                            <option value="Тернопіль">Тернопіль</option>
-                            <option value="Харків">Харків</option>
-                            <option value="Хмельницький">Хмельницький</option>
-                            <option value="Черкаси">Черкаси</option>
-                            <option value="Чернівці">Чернівці</option>
-                            
-                        </select>
-                    </div>
-                    <div class="submit-button-wrapper">
-                        <button type="submit" class="w-full p-2 rounded submit-button" disabled>Далі</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+  <div class="bg-white p-8 rounded shadow-md" style="width: 430px; height: 932px; padding-top: 35px;">
+    <div class="flex justify-center mb-4">
+      <img src="https://i.ibb.co/8YqPWnJ/Logo.png" alt="Viyar Logo" class="logo">
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const form = document.getElementById('form');
-            const inputs = form.querySelectorAll('input, select');
-            const submitButton = form.querySelector('button[type="submit"]');
 
-            inputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    validateInput(input);
-                    toggleSubmitButton();
-                });
-            });
+    <div class="form-container">
+      <div class="form-wrapper">
+        <form id="leadForm" novalidate>
+          <div class="relative mb-4 form-element">
+            <label for="firstName" class="block font-bold text-gray-700">Ім'я*</label>
+            <input type="text" id="firstName" name="firstName" class="border w-full p-2 rounded" autocomplete="given-name" required>
+          </div>
 
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                inputs.forEach(input => {
-                    validateInput(input);
-                });
+          <div class="relative mb-4 form-element">
+            <label for="lastName" class="block font-bold text-gray-700">Прізвище*</label>
+            <input type="text" id="lastName" name="lastName" class="border w-full p-2 rounded" autocomplete="family-name" required>
+          </div>
 
-                const formData = new FormData(form);
-                const data = {};
-                formData.forEach((value, key) => {
-                    data[key] = value;
-                });
+          <div class="relative mb-4 form-element input-wrapper">
+            <label for="phone" class="block font-bold text-gray-700">Номер телефону*</label>
+            <span>+38</span>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="border w-full p-2 rounded phone-input"
+              placeholder="000 000 00 00"
+              inputmode="numeric"
+              pattern="\\d{3} \\d{3} \\d{2} \\d{2}"
+              maxlength="13"
+              required
+            >
+          </div>
 
-                fetch("https://script.google.com/macros/s/AKfycbwU5uC0hTyNVhNCmr8EJyUxyfjhThc9BwkhjUnl1J5A1LaJXjwRkzjqObm7vGDnfj_c/exec", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                    },
-                    body: new URLSearchParams(data).toString(),
-                })
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.result === "success") {
-                        alert("Дані успішно відправлені");
-                        window.location.href = "story.html"; // Переход к курсу
-                    } else {
-                        alert("Помилка відправки даних: " + data.error);
-                    }
-                })
-                .catch((error) => {
-                    console.error("Помилка:", error);
-                });
-            });
+          <div class="relative mb-4 form-element">
+            <label for="branch" class="block font-bold text-gray-700">Філія*</label>
+            <select id="branch" name="branch" class="border w-full p-2 rounded" required>
+              <option value="">Обери філію зі списку</option>
+              <option>Біла Церква</option>
+              <option>Варшава</option>
+              <option>Васильків</option>
+              <option>Віскозна</option>
+              <option>Вінниця</option>
+              <option>Гавела</option>
+              <option>Дніпро</option>
+              <option>Житомир</option>
+              <option>Івано-Франківськ</option>
+              <option>Кривий Ріг</option>
+              <option>Львів</option>
+              <option>Львів 2</option>
+              <option>Новоконстантинівська</option>
+              <option>Одеса</option>
+              <option>Полтава</option>
+              <option>Рівне</option>
+              <option>Тернопіль</option>
+              <option>Харків</option>
+              <option>Хмельницький</option>
+              <option>Черкаси</option>
+              <option>Чернівці</option>
+            </select>
+          </div>
 
-            function validateInput(input) {
-                const value = input.value.trim();
-                if (input.type === 'tel') {
-                    const phonePattern = /^\d{3} \d{3} \d{2} \d{2}$/;
-                    if (phonePattern.test(value)) {
-                        input.classList.remove('input-invalid');
-                        input.classList.add('input-valid');
-                    } else {
-                        input.classList.remove('input-valid');
-                        input.classList.add('input-invalid');
-                    }
-                } else if (input.type === 'select-one') {
-                    if (input.value) {
-                        input.classList.remove('input-invalid');
-                        input.classList.add('input-valid');
-                    } else {
-                        input.classList.remove('input-valid');
-                        input.classList.add('input-invalid');
-                    }
-                } else {
-                    if (value) {
-                        input.classList.remove('input-invalid');
-                        input.classList.add('input-valid');
-                    } else {
-                        input.classList.remove('input-valid');
-                        input.classList.add('input-invalid');
-                    }
-                }
-            }
+          <div class="submit-button-wrapper">
+            <button type="submit" class="w-full p-2 rounded submit-button" disabled>Далі</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
-            function toggleSubmitButton() {
-                const allValid = [...inputs].every(input => input.classList.contains('input-valid'));
-                if (allValid) {
-                    submitButton.classList.add('active');
-                    submitButton.disabled = false;
-                } else {
-                    submitButton.classList.remove('active');
-                    submitButton.disabled = true;
-                }
-            }
-        });
-    </script>
+  <script>
+    (function () {
+      const GAS_URL  = 'https://script.google.com/macros/s/AKfycbwU5uC0hTyNVhNCmr8EJyUxyfjhThc9BwkhjUnl1J5A1LaJXjwRkzjqObm7vGDnfj_c/exec';
+      const NEXT_URL = 'story.html';
+
+      const form   = document.getElementById('leadForm');
+      const inputs = form.querySelectorAll('input, select');
+      const submit = form.querySelector('button[type="submit"]');
+
+      // helpers
+      function setValidity(input, ok){
+        input.classList.toggle('input-valid', ok);
+        input.classList.toggle('input-invalid', !ok);
+      }
+
+      function validateInput(input){
+        const v = input.value.trim();
+
+        if (input.id === 'phone') {
+          // Маска телефона
+          input.value = v.replace(/[^0-9]/g, '').slice(0,10)
+                         .replace(/(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2}).*/, (m,a,b,c,d)=>
+                           [a,b,c,d].filter(Boolean).join(' ')
+                         );
+          const ok = /^\d{3} \d{3} \d{2} \d{2}$/.test(input.value);
+          setValidity(input, ok);
+          return ok;
+        }
+
+        if (input.tagName === 'SELECT') {
+          const ok = !!v;
+          setValidity(input, ok);
+          return ok;
+        }
+
+        const ok = !!v;
+        setValidity(input, ok);
+        return ok;
+      }
+
+      function toggleSubmit(){
+        const allValid = Array.from(inputs).every(el => validateInput(el));
+        submit.disabled = !allValid;
+        submit.classList.toggle('active', allValid);
+      }
+
+      // events
+      inputs.forEach(el => {
+        el.addEventListener('input', () => { validateInput(el); toggleSubmit(); });
+        el.addEventListener('change', () => { validateInput(el); toggleSubmit(); });
+      });
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        // финальная проверка
+        let ok = true;
+        inputs.forEach(el => { if (!validateInput(el)) ok = false; });
+        if (!ok) return;
+
+        const fd = new FormData(form);
+        const params = new URLSearchParams();
+        for (const [k,v] of fd.entries()) params.append(k, v);
+
+        // 1) Пытаемся отправить через sendBeacon (надежно при переходе)
+        let sent = false;
+        if ('sendBeacon' in navigator) {
+          try {
+            const blob = new Blob([params.toString()], { type: 'application/x-www-form-urlencoded;charset=UTF-8' });
+            sent = navigator.sendBeacon(GAS_URL, blob);
+          } catch(_) {}
+        }
+
+        // 2) Если beacon недоступен/вернул false — fallback: fetch no-cors + keepalive
+        if (!sent) {
+          try {
+            fetch(GAS_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              keepalive: true,
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+              body: params.toString()
+            }).catch(()=>{ /* игнорируем */ });
+          } catch(_) {}
+        }
+
+        // 3) Переходим всегда (fire-and-forget)
+        window.location.href = NEXT_URL;
+      });
+
+      // начальная инициализация
+      toggleSubmit();
+    })();
+  </script>
 </body>
 </html>
