@@ -44,19 +44,19 @@
 
           <div class="relative mb-4 form-element">
             <label for="phone" class="block font-bold text-gray-700">Номер телефону*</label>
-            <div class="flex items-center border rounded">
-              <span class="px-2 font-bold text-black">+38</span>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              class="flex-1 p-2 rounded-r phone-input focus:outline-none"
-              placeholder="000 000 00 00"
-              inputmode="numeric"
-              pattern="\d{3} \d{3} \d{2} \d{2}"
-              maxlength="13"
-              required
-            >
+            <div class="flex items-center border rounded overflow-hidden">
+              <span class="px-2 font-bold text-black bg-gray-100">+38</span>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="flex-1 p-2 focus:outline-none"
+                placeholder="000 000 00 00"
+                inputmode="numeric"
+                pattern="\d{3} \d{3} \d{2} \d{2}"
+                maxlength="13"
+                required
+              >
             </div>
           </div>
 
